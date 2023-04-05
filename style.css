@@ -1,0 +1,128 @@
+/* CSS RESET */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Epilogue', sans-serif;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+}
+
+nav h1 {
+    width: 300px;
+}
+
+.btn-container {
+    display: flex;
+    width: 300px;
+    background-color: #ddd;
+    border-radius: 10px;
+}
+
+.btn-container * {
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+}
+
+.btn1 {
+    background-color: black;
+    color: white;
+}
+
+nav ul {
+    display: flex;
+    width: 300px;
+    list-style: none;
+    justify-content: space-between;
+}
+
+nav ul li {
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero-section {
+    margin: 80px;
+}
+
+.line {
+    font-size: 3rem;
+    line-height: 1.3em;
+}
+
+.info {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.social {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin-top: 80px;
+    margin-left: auto;
+}
+
+.social a {
+    text-decoration: none;
+}
+
+.social a * {
+    height: 25px;
+}
+
+/* About Section */
+.about {
+    display: flex;
+    margin: 60px 80px;
+    background-color: black;
+    border-radius: 20px;
+    padding: 50px;
+    color: white;
+    gap: 150px;
+}
+
+.about * {
+    width: 100%;
+}
+
+.about .left-container h1 {
+    font-size: 48px;
+    font-weight: 500;
+    width: 330px;
+}
+
+.about .left-container p {
+    font-size: 20px;
+    font-weight: 200;
+    margin-top: 30px;
+    line-height: 1.3em;
+}
+
+.about .left-container button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    border-radius: 10px;
+    width: 180px;
+    padding: 10px;
+}
+
+.about .left-container button * {
+    width: fit-content;
+    height: fit-content;
+}
+
