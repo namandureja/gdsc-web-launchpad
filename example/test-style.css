@@ -6,27 +6,28 @@
     font-family: 'Epilogue', sans-serif;
 }
 
-body {
-    transition: all 0.3s ease;
-}
-
 .preload {
+    /* -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important; */
     display: none;
 }
-
 
 .dark {
     background-color: black;
     color: white;
 }
 
+
 /* Navbar */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    animation: fade-in 0.5s ease-in-out;
     padding: 25px 80px;
-    animation: fade-in 0.4s ease forwards;
 }
 
 nav h1 {
@@ -40,46 +41,47 @@ nav h1 {
     width: 300px;
     background-color: #ddd;
     border-radius: 12px;
-    padding: 2px;
     position: relative;
-    transition: all 0.3s ease;
+    padding: 2px;
 }
 
-.btn-container button {
+.btn-container>button {
     width: 100%;
     border-radius: 12px;
     padding: 12px 20px;
     border: none;
+    cursor: pointer;
     font-size: 0.8rem;
     font-weight: 600;
+    transition: all 0.25s ease;
     z-index: 1;
     background-color: transparent;
 }
 
-.btn1 {
-    color: white;
-}
-
-.bg-wrap {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    z-index: 0;
-    width: calc(50% + 2px);
-    height: calc(100% - 4px);
-    box-shadow: 0 0 2px 4px rgba(0, 0, 0, 0.08);
+.btn-container .bg-wrap {
+    background: #303030;
     border-radius: 12px;
-    background-color: #212121;
-    transition: all 0.3s ease;
-}
-
-.dark .bg-wrap {
-    left: calc(50% - 4px);
-    background-color: white;
+    box-shadow: 0 0 2px 4px rgba(0, 0, 0, .08);
+    height: calc(100% - 5px);
+    width: calc(50% - 1px);
+    left: 3px;
+    position: absolute;
+    z-index: 0;
+    top: 2.5px;
+    transition: all .25s ease-in-out;
 }
 
 .dark .btn-container {
     background-color: #303030;
+}
+
+.dark .btn-container .bg-wrap {
+    background: #fff;
+    left: calc(50% - 3px);
+}
+
+.btn1 {
+    color: white;
 }
 
 nav ul {
@@ -91,11 +93,6 @@ nav ul {
 
 nav ul li {
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-nav ul li:hover {
-    color: #ff6b6b;
 }
 
 /* Hero Section */
@@ -146,8 +143,8 @@ nav ul li:hover {
 }
 
 .dark .about {
-    color: black;
     background-color: white;
+    color: black;
 }
 
 .about * {
@@ -178,18 +175,6 @@ nav ul li:hover {
     border-radius: 10px;
     width: 180px;
     padding: 10px;
-    cursor: pointer;
-    transition: background-color color 0.3s ease;
-}
-
-.about .left-container button:hover {
-    background-color: white;
-    color: black;
-}
-
-.dark .about .left-container button:hover {
-    background-color: black;
-    color: white;
 }
 
 .dark .about .left-container button {
@@ -207,33 +192,33 @@ nav ul li:hover {
 }
 
 .quote hr {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .quote h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 25px;
     font-weight: 600;
 }
 
 .quote blockquote {
-    font-size: 1.7rem;
-    margin-bottom: 20px;
     font-style: italic;
+    font-size: 1.5rem;
     line-height: 1.3;
 }
 
 .quote .author {
+    margin-top: 15px;
     font-size: 1.2rem;
-}
-
-.line p {
-    transform: translateY(100%);
-    animation: move-up 0.35s ease forwards;
 }
 
 .line {
     overflow: hidden;
+}
+
+.line p {
+    transform: translateY(100%);
+    animation: move-up 0.25s ease-in-out forwards;
 }
 
 .hero-section .line:nth-child(1) p {
@@ -241,46 +226,57 @@ nav ul li:hover {
 }
 
 .hero-section .line:nth-child(2) p {
-    animation-delay: 0.3s;
+    animation-delay: 0.35s;
 }
 
 .hero-section .line:nth-child(3) p {
     animation-delay: 0.5s;
 }
 
-
-.info,
-.social {
-    transform: translateY(40px);
+.info {
     opacity: 0;
-    animation: fade-up 0.35s ease forwards;
+    transform: translateY(200%);
+    animation: fade-up 0.25s ease-in-out forwards;
     animation-delay: 0.6s;
+}
+
+.social {
+    opacity: 0;
+    transform: translateY(200%);
+    animation: fade-up 0.25s ease-in-out forwards;
+    animation-delay: 0.6s;
+}
+
+@keyframes fade-up {
+
+    0% {
+        opacity: 0;
+        transform: translateY(200%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
 }
 
 
 @keyframes move-up {
+
     0% {
         transform: translateY(100%);
     }
 
     100% {
-        transform: translateY(0%);
-    }
-}
-
-@keyframes fade-up {
-    0% {
-        opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(0);
     }
 
-    100% {
-        opacity: 1;
-        transform: translateY(0%);
-    }
 }
+
 
 @keyframes fade-in {
+
     0% {
         opacity: 0;
     }
@@ -288,15 +284,18 @@ nav ul li:hover {
     100% {
         opacity: 1;
     }
+
 }
 
 .fadeup {
-    transform: translateY(100px);
+    transform: translateY(50px);
     opacity: 0;
-    transition: all 0.6s ease;
+    transition-property: transform, opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
 }
 
 .in-view.fadeup {
-    transform: translateY(0px);
+    transform: none;
     opacity: 1;
 }

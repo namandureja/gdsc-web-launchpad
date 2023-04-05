@@ -17,7 +17,7 @@
     <!-- LottieFiles Script -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./test-style.css" />
   </head>
   <body class="preload">
     <!-- Navbar -->
@@ -25,16 +25,14 @@
       <nav>
         <h1>John Doe</h1>
         <div class="btn-container">
-          <button class="btn1" onclick="enableLightMode()">Developer</button>
-          <button class="btn2" onclick="enableDarkMode()">
-            UI/UX Designer
-          </button>
+          <button class="btn1" onclick="setLightTheme()">Developer</button>
+          <button class="btn2" onclick="setDarkTheme()">UI/UX Designer</button>
           <div class="bg-wrap"></div>
         </div>
         <ul>
           <li>About</li>
           <li>Works</li>
-          <li>Quote</li>
+          <li>Contact</li>
         </ul>
       </nav>
     </header>
@@ -42,7 +40,7 @@
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="line"><p>👋 Hey! I'm John Doe.</p></div>
-      <div class="line" id="role"><p>I am a Frontend Developer.</p></div>
+      <div class="line line2"><p>I am a Frontend Developer.</p></div>
       <div class="line"><p>Based in Delhi, India.</p></div>
       <div class="info">Scroll down to know more.</div>
       <div class="social">
@@ -116,7 +114,7 @@
           </svg>
         </button>
       </div>
-      <div class="right-container">
+      <div class="right-container fadeup">
         <lottie-player
           class="light-theme-image"
           src="https://assets4.lottiefiles.com/packages/lf20_8dphtide.json"
@@ -129,11 +127,66 @@
     <section class="quote fadeup">
       <hr />
       <h1>Quote for the day</h1>
-      <blockquote>
-        hfnajw njkwenf kjanwjknf ajkwn jkanwkj nawjkn fakjwnf
-      </blockquote>
-      <p class="author">- <span>Naman Dureja</span></p>
+      <blockquote></blockquote>
+      <p class="author fadeup">- <span></span></p>
     </section>
-    <script src="./index.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        if (localStorage.getItem("theme") === "dark") {
+          setDarkTheme();
+        } else {
+          setLightTheme();
+        }
+
+        setTimeout(function () {
+          document.body.classList.remove("preload");
+        }, 250);
+
+        loadQuotes();
+
+        initObserver();
+      });
+
+      function initObserver() {
+        const elements = document.querySelectorAll(".fadeup");
+        elements.forEach((element) => {
+          observer.observe(element);
+        });
+      }
+
+      function setDarkTheme() {
+        document.body.classList.add("dark");
+        document.querySelector(".line2 p").innerHTML = "I am a UI/UX Designer.";
+        localStorage.setItem("theme", "dark");
+      }
+      function setLightTheme() {
+        document.body.classList.remove("dark");
+        document.querySelector(".line2 p").innerHTML =
+          "I am a Frontend Developer.";
+        localStorage.setItem("theme", "light");
+      }
+
+      async function loadQuotes() {
+        const res = await fetch("https://api.quotable.io/random?minLength=100");
+        const data = await res.json();
+        document.querySelector(".quote blockquote").innerHTML = data.content;
+        document.querySelector(".quote .author span").innerHTML = data.author;
+      }
+
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.3,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+    </script>
   </body>
 </html>
